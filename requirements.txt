@@ -46,6 +46,7 @@ parso==0.8.3
 pexpect==4.8.0
 Pillow==10.1.0
 platformdirs==4.0.0
+plotnine 0.12.4
 prompt-toolkit==3.0.40
 protobuf==4.25.0
 psutil==5.9.6
