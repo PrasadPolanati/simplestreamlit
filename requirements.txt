@@ -46,7 +46,7 @@ parso==0.8.3
 pexpect==4.8.0
 Pillow==10.1.0
 platformdirs==4.0.0
-plotnine 0.12.4
+plotnine==0.12.4
 prompt-toolkit==3.0.40
 protobuf==4.25.0
 psutil==5.9.6
@@ -69,6 +69,7 @@ s3transfer==0.7.0
 scikit-learn==1.3.2
 scipy==1.11.3
 six==1.16.0
+seaborn==0.11.2
 smmap==5.0.1
 stack-data==0.6.3
 streamlit==1.28.1

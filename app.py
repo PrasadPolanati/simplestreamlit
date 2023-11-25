@@ -6,7 +6,9 @@ import pandas as pd
 st.title('Week 13 | Lab - Streamlit and Backblaze')
 
 #data
+from plotnine import *
 from plotnine.data import txhousing
+
 df = txhousing
 data_2 = df.dropna()
 txh = data_2
