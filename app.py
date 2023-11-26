@@ -4,7 +4,7 @@ import pandas as pd
 #import matplotlib.pyplot as plt
 
 st.title('Week 13 | Lab - Streamlit and Backblaze')
-
+import numpy as np
 #data
 from plotnine import *
 from plotnine.data import txhousing
