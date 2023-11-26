@@ -1,7 +1,13 @@
-import streamlit as st
+import os
+import json
+import pickle
+import matplotlib.pyplot as plt
 import pandas as pd
-#import seaborn as sns
-#import matplotlib.pyplot as plt
+import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 st.title('Week 13 | Lab - Streamlit and Backblaze')
 import numpy as np
