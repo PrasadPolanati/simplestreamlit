@@ -1,7 +1,7 @@
 import streamlit as st
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import pandas as pd
 
 st.title('Week 13 | Lab - Streamlit and Backblaze')
 
@@ -15,7 +15,6 @@ txh = data_2
 txh['mean_price'] = txh['volume'] / txh['sales']
 txh['price_dif'] = txh['mean_price'] - txh['median']
 txh['sales_prop'] = txh['sales'] / txh['listings']
-
 # Group data
 grouped_data = txh.groupby(['city', 'year'])
 mean_monthly_sales = grouped_data['sales'].mean()
