@@ -1,24 +1,11 @@
-<<<<<<< HEAD
 import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-=======
-import os
-import json
-import pickle
-import matplotlib.pyplot as plt
-import pandas as pd
-import streamlit as st
-from dotenv import load_dotenv
 
-load_dotenv()
-
->>>>>>> 38cb8731bf5956cb92e8659def8a6012cfbd8e2c
 
 st.title('Week 13 | Lab - Streamlit and Backblaze')
-import numpy as np
-#data
+
 from plotnine import *
 from plotnine.data import txhousing
 
