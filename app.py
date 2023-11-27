@@ -3,9 +3,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
-st.title('Week 13 | Lab - Streamlit and Backblaze')
-
 from plotnine import *
 from plotnine.data import txhousing
 
