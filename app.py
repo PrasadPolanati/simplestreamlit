@@ -1,76 +1,60 @@
-<<<<<<< HEAD
 import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-=======
-import os
-import json
-import pickle
-import matplotlib.pyplot as plt
-import pandas as pd
-import streamlit as st
-from dotenv import load_dotenv
+import numpy as np
+import plotly.express as px
 
-load_dotenv()
-
->>>>>>> 38cb8731bf5956cb92e8659def8a6012cfbd8e2c
 
 st.title('Week 13 | Lab - Streamlit and Backblaze')
-import numpy as np
-#data
-from plotnine import *
-from plotnine.data import txhousing
 
-df = txhousing
-data_2 = df.dropna()
-txh = data_2
-txh['mean_price'] = txh['volume'] / txh['sales']
-txh['price_dif'] = txh['mean_price'] - txh['median']
-txh['sales_prop'] = txh['sales'] / txh['listings']
-# Group data
-grouped_data = txh.groupby(['city', 'year'])
-mean_monthly_sales = grouped_data['sales'].mean()
-median_median_price = grouped_data['median'].median()
-median_mean_price = grouped_data['mean_price'].median()
-median_price_dif = grouped_data['price_dif'].median()
 
-result_df = pd.DataFrame({
-    'mean_monthly_sales': mean_monthly_sales,
-    'median_median_price': median_median_price,
-    'median_mean_price': median_mean_price,
-    'median_price_dif': median_price_dif
-}).reset_index()
+df = pd.read_csv(r'C:\Users\prasa\Desktop\simplestreamlit\simplestreamlit\train.csv',)
 
-# Scatter plot
-st.title('Average Monthly Sales per Year for selected City')
-#grouped_data = result_df.groupby(['year', 'city'])['mean_monthly_sales'].mean().unstack()
+print(df['defects'].value_counts())
 
-#dropdown for cities
-selected_cities = st.multiselect('Select Cities:', result_df['city'].unique())#, default=result_df['city'].unique())
+st.title('Class distribution of the data')
 
-# Filter data for selected cities
-filtered_df = result_df[result_df['city'].isin(selected_cities)]
+#histogram
+fig, ax = plt.subplots()
+df['defects'].value_counts(normalize = True).plot(kind = 'bar', color = ['steelblue', 'orange'],ax=ax)
+plt.ylabel('Percentage')
+plt.xlabel('Class')
+plt.title('Defects Distribution')
 
-plt.figure(figsize=(12, 8))
-#line plot
-for city in selected_cities:
-    plt.plot(filtered_df[filtered_df['city'] == city]['year'],
-             filtered_df[filtered_df['city'] == city]['mean_monthly_sales'],
-             marker='o', label=city)
+st.pyplot(fig)
 
-#labels
-plt.xlabel('Year')
-plt.ylabel('Average Monthly Sales')
 
-#legend
-plt.legend(title='City', loc='upper right')
-st.pyplot()
+# Dropping the index and target columns
+corr_mat = df.drop(columns = [ 'defects'], axis = 1).corr()
 
-# Display a subset of the data using st.dataframe
-st.header('Display a Subset of the Data')
+data_mask = np.triu(np.ones_like(corr_mat, dtype = bool))
+cmap = sns.diverging_palette(100, 7, s = 75, l = 40, n = 20, center = 'light', as_cmap = True)
+fig2, ax2 = plt.subplots(figsize = (18, 13))
+sns.heatmap(corr_mat, annot = True, cmap = cmap, fmt = '.2f', center = 0,
+            annot_kws = {'size': 18}, mask = data_mask).set_title('Correlations Among Input Features');
 
-#st.sidebar.header('User Input')
-subset_size = st.slider('Select number of rows to display:', min_value=1, max_value=len(df), value=5)
-subset = df.head(subset_size)
-st.dataframe(subset)
+st.pyplot(fig2)
+
+
+
+st.title('Feature Distributions after Log Transformation')
+
+data = df
+# Create a function for log transformation and plotting
+def log_transform_and_plot(column):
+    fig, ax = plt.subplots()
+    ax.hist(np.log1p(data[column]), bins=100, color='magenta')
+    ax.set_xlabel(column)
+    ax.set_ylabel('Frequency')
+    ax.set_title(f'{column} Distribution after Log Transformation')
+    return fig
+
+# Display log-transformed feature distributions in Streamlit
+for col in data.columns:
+    st.pyplot(log_transform_and_plot(col))
+
+
+
+
+

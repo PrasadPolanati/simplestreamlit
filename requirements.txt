@@ -2,4 +2,6 @@ streamlit
 seaborn
 pandas
 matplotlib
-plotnine
+numpy
+plotly
+
