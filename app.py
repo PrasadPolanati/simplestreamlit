@@ -9,7 +9,7 @@ import plotly.express as px
 st.title('Week 13 | Lab - Streamlit and Backblaze')
 
 
-df = pd.read_csv(r'C:\Users\prasa\Desktop\simplestreamlit\simplestreamlit\train.csv',)
+df = pd.read_csv('train.csv',)
 
 
 st.title('Class distribution of the data')
