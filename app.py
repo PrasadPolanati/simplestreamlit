@@ -11,7 +11,6 @@ st.title('Week 13 | Lab - Streamlit and Backblaze')
 
 df = pd.read_csv(r'C:\Users\prasa\Desktop\simplestreamlit\simplestreamlit\train.csv',)
 
-print(df['defects'].value_counts())
 
 st.title('Class distribution of the data')
 
